@@ -17,8 +17,9 @@ class Counter extends Component {
         return <ul>{this.state.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>;
     }
 
-    handleIncrement = () =>{
-        console.log('clicked', this);
+    handleIncrement = id =>{
+        console.log(id);
+        this.setState({ count: this.state.count +1 });
     }
 
     render() { 
@@ -27,7 +28,7 @@ class Counter extends Component {
             <div className="container">
                 <div><img className="img-responsive" src={this.state.imageUrl} alt=""/></div>
                 <span style={ this.style } className={ this.getBandgeClass() }>{this.formatCount()}</span>
-                <button onClick={this.handleIncrement} className="btn btn-secondary btn-sm">Increment</button>
+                <button onClick={() => this.handleIncrement({ id : 1 })} className="btn btn-secondary btn-sm">Increment</button>
                 <div>{this.renderTags()}</div>
             </div>
         );

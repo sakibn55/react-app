@@ -1,26 +1,28 @@
-import React, { Component } from 'react';
-import Counter from './counter';
+import React, { Component } from "react";
+import Counter from "./counter";
 
 class Counters extends Component {
-    state = { 
-        counters: [
-            { id:1, value: 4 },
-            { id:2, value: 0 },
-            { id:3, value: 0 },
-            { id:4, value: 0 },
-        ]
-    };
-    render() { 
-       return ( 
-           <div>
-               {this.state.counters.map(counter => <Counter key={counter.id} value={counter.value} >
-                <h4>Title</h4>
-               </Counter>
-               )}
-           </div>
-        );
-
-    }
+  render() {
+    const { onReset, counters, onDelete, onIncrement } = this.props;
+    return (
+      <React.Fragment>
+        <div className="row m-1">
+          <div className="col">
+            <button onClick={onReset} className="btn primary btn-sm">
+              Reset
+            </button>
+          </div>
+        </div>
+        {counters.map(counter => (
+          <Counter
+            key={counter.id}
+            onIncrement={onIncrement}
+            onDelete={onDelete}
+            counter={counter}
+          />
+        ))}
+      </React.Fragment>
+    );
+  }
 }
- 
 export default Counters;
